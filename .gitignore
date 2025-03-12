@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry virtual environment (if using in-project venv)
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# C extensions
+*.so
+
+# Testing artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# Docker
+.dockerignore
+.env
+docker-compose.override.yml
+
+# MacOS system files
+.DS_Store
+
+# Python virtual environment (if not using in-project venv)
+.env/
+venv/
