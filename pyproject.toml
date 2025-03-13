@@ -29,6 +29,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 cocommit = "cocommit.cocommit:main"
+test = "pytest:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^6.0.0"
 
 [tool.poetry]
 include = ["cocommit/llm_prompts/*.*"]
