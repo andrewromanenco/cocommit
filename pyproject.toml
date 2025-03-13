@@ -1,19 +1,27 @@
 [project]
 name = "cocommit"
 version = "0.1.0"
-description = ""
+description = "Copilot for git commits"
 authors = [
-    {name = "Andrew Romanenco"}
+    {name = "Andrew Romanenco", email = "andrew@romanenco.com"}
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.13"
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+]
+
+requires-python = ">=3.9"
 dependencies = [
     "pytest (>=8.3.5,<9.0.0)",
     "gitpython (>=3.1.44,<4.0.0)",
     "boto3 (>=1.37.11,<2.0.0)"
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/andrewromanenco/cocommit"
+"Source" = "https://github.com/andrewromanenco/cocommit"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
