@@ -31,3 +31,7 @@ the new commit message
 
 It is asolutely important for the new message to be printed between <NEW-COMMIT-MESSAGE> and </NEW-COMMIT-MESSAGE>.
 In addition, if there are any general advices or comments on the commit message, return those recommendation between tags <FIXES> and </FIXES>. Make sure each recommendation is on a new line and each recommendation does not span on multiple lines. Sort recommendations by importance, most important ones are on top.
+
+In addition, provide overall summary. Keep summary in tags <SUMMARY></SUMMARY>.
+If strengths exist, add them one per line between tags <STRENGTHS></STRENGTHS>.
+Areas for improvement, if exist, should be one per line between tags <IMPROVE></IMPROVE>.
