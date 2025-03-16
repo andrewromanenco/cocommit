@@ -1,6 +1,8 @@
 import click
 import time
 
+from cocommit.dogs_vs_cats import generate_ascii_pet
+
 def not_a_git_repo():
     click.echo("You must be in the root directory of a Git repository (where the .git folder is located).")
 
@@ -37,6 +39,7 @@ def _print_list(name, items):
 
 def print_result(llm_reply):
     click.echo("V"*40)
+    generate_ascii_pet()
     click.echo(llm_reply.summary)
     click.echo("\n")
     _print_list("Strengths", llm_reply.strengths_list)
