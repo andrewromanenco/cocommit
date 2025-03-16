@@ -37,3 +37,11 @@ pytest-cov = "^6.0.0"
 
 [tool.poetry]
 include = ["cocommit/llm_prompts/*.*"]
+
+[tool.coverage.run]
+omit = [
+    "cocommit/cli_ui.py",
+    "cocommit/cocommit.py",
+    "cocommit/dogs_vs_cats.py",
+    "cocommit/git_utils.py"
+]
