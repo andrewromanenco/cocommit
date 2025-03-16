@@ -1,4 +1,4 @@
-from cocommit.response_utils import get_list_of_improvements, get_list_of_recommendations, get_list_of_strengths, get_summary, get_updated_commit_message
+from cocommit.parser.response_utils import get_list_of_improvements, get_list_of_recommendations, get_list_of_strengths, get_summary, get_updated_commit_message
 
 def test_new_commit_message():
     assert get_updated_commit_message("123<NEW-COMMIT-MESSAGE>msg\nmsg</NEW-COMMIT-MESSAGE>456") == "msg\nmsg"
