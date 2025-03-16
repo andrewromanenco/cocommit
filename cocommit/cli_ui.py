@@ -50,3 +50,23 @@ def print_result(llm_reply):
     click.echo("*"*(10 + 20 + len(commit_header)))
     _print_list("Fixes", llm_reply.recommendations_list)
 
+def ask_if_do_amend():
+    valid_answers = {"yes": True, "y": True, "no": False, "n": False}
+    question = "Amend the commit message?"
+    prompt = " [Y/n]: "
+    default = "yes"
+
+    while True:
+        user_input = input(question + prompt).strip().lower()
+        if not user_input:  # If user presses Enter, use default
+            return valid_answers[default]
+        if user_input in valid_answers:
+            return valid_answers[user_input]
+        click.echo("Invalid response. Please enter 'yes' or 'no' (or 'y'/'n').")
+
+def confirm_amend(previous_commit):
+    header = "*" * 10 + " Previous message " + "*" * 10
+    click.echo(header)
+    click.echo(previous_commit.strip())
+    click.echo("*" * len(header))
+    click.echo("Amend ... done!")
