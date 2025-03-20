@@ -2,8 +2,8 @@ import click
 import cocommit.cli_ui as cli_ui
 
 from cocommit.commit_amend import ask_and_amend
-from cocommit.bedrock import call_bedrock_claude_3_7
 from cocommit.git_utils import get_last_commit_message, is_git_repo
+from cocommit.llm_caller import call_llm
 from cocommit.prompt_utils import get_llm_prompt
 from cocommit.parser.llm_reply import LLMReply
 
@@ -21,7 +21,7 @@ def main(ctx, **kwargs):
     llm_prompt = get_llm_prompt(last_commit_message)
     if options.get('show_llm_prompt'):
         cli_ui.print_llm_prompt(llm_prompt)
-    llm_txt_reply = cli_ui.timed_llm_call(call_bedrock_claude_3_7, llm_prompt)
+    llm_txt_reply = cli_ui.timed_llm_call(call_llm, llm_prompt)
     if options.get('show_llm_reply'):
         cli_ui.print_llm_reply(llm_txt_reply)
     llm_reply = LLMReply.get(llm_txt_reply)
