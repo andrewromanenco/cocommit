@@ -90,3 +90,8 @@ def get_dynamic_options(options):
                     extra_dict[key] = True
         return extra_dict
     return {}
+
+def no_model_parameters():
+    click.echo("It looks like no model selection options were provided.")
+    click.echo("Use --help for more information,")
+    click.echo("or run --shortcut to view available presets.")

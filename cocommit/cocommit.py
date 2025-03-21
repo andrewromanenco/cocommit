@@ -18,6 +18,9 @@ from cocommit.parser.llm_reply import LLMReply
 def main(ctx, **kwargs):
     options = ctx.params
     dynamic_options = cli_ui.get_dynamic_options(ctx.params)
+    if not dynamic_options:
+        cli_ui.no_model_parameters()
+        return
     path = "."
     if not is_git_repo(path):
         cli_ui.not_a_git_repo()
