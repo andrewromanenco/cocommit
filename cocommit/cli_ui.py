@@ -95,3 +95,8 @@ def no_model_parameters():
     click.echo("It looks like no model selection options were provided.")
     click.echo("Use --help for more information,")
     click.echo("or run --shortcut to view available presets.")
+
+def bad_llm_response():
+    click.echo("Got a bad response back from the LLM!")
+    click.echo("Try running with --show-llm-reply to view the raw reply.")
+    click.echo("Use --show-llm-prompt to inspect the actual prompt.")

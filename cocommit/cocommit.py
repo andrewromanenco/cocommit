@@ -3,7 +3,7 @@ import cocommit.cli_ui as cli_ui
 
 from cocommit.commit_amend import ask_and_amend
 from cocommit.git_utils import get_last_commit_message, is_git_repo
-from cocommit.llm_caller import call_llm
+from cocommit.llm_caller import call_llm, looks_like_good_llm_response
 from cocommit.prompt_utils import get_llm_prompt
 from cocommit.parser.llm_reply import LLMReply
 
@@ -30,6 +30,9 @@ def main(ctx, **kwargs):
     if options.get('show_llm_prompt'):
         cli_ui.print_llm_prompt(llm_prompt)
     llm_txt_reply = cli_ui.timed_llm_call(lambda :call_llm(llm_prompt, **dynamic_options))
+    if not looks_like_good_llm_response(llm_txt_reply):
+        cli_ui.bad_llm_response()
+        return
     if options.get('show_llm_reply'):
         cli_ui.print_llm_reply(llm_txt_reply)
     llm_reply = LLMReply.get(llm_txt_reply)
