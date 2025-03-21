@@ -1,3 +1,13 @@
+import warnings
+
+# Suppress the specific DeprecationWarning from pydantic.v1.typing
+# Remove after langchain upgrades their dependency
+warnings.filterwarnings(
+    "ignore",
+    category=DeprecationWarning,
+    module="pydantic.v1.typing"
+)
+
 import pytest
 from click.testing import CliRunner
 from cocommit.cocommit import main
