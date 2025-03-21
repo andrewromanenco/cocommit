@@ -6,6 +6,7 @@ from cocommit.git_utils import get_last_commit_message, is_git_repo
 from cocommit.llm_caller import call_llm, looks_like_good_llm_response
 from cocommit.prompt_utils import get_llm_prompt
 from cocommit.parser.llm_reply import LLMReply
+from cocommit.shortcuts import get_shortcut
 
 @click.command(context_settings=dict(
     ignore_unknown_options=True,
@@ -13,11 +14,23 @@ from cocommit.parser.llm_reply import LLMReply
 ))
 @click.option('--show-llm-prompt', is_flag=True, help='Show the prompt sent out to the LLM')
 @click.option('--show-llm-reply', is_flag=True, help='Show the raw reply from the LLM')
+@click.option('--show-shortcuts', is_flag=True, help='Display available presets for CLI parameters.')
+@click.option('--shortcut', type=str, help='Predefined CLI parameters for common models')
 @click.argument("langchain_options", nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def main(ctx, **kwargs):
     options = ctx.params
-    dynamic_options = cli_ui.get_dynamic_options(ctx.params)
+    if options.get('show_shortcuts'):
+        cli_ui.show_shortcuts()
+        return
+    if options.get('shortcut'):
+        dynamic_options = get_shortcut(options.get('shortcut'))
+        if not dynamic_options:
+            cli_ui.no_such_shortcut(options.get('shortcut'))
+            return
+        cli_ui.selected_shortcut(dynamic_options)
+    else:
+        dynamic_options = cli_ui.get_dynamic_options(ctx.params)
     if not dynamic_options:
         cli_ui.no_model_parameters()
         return

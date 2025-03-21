@@ -1,5 +1,8 @@
 import click
+import json
 import time
+
+from cocommit.shortcuts import shortcuts
 
 from cocommit.dogs_vs_cats import generate_ascii_pet
 
@@ -94,9 +97,27 @@ def get_dynamic_options(options):
 def no_model_parameters():
     click.echo("It looks like no model selection options were provided.")
     click.echo("Use --help for more information,")
-    click.echo("or run --shortcut to view available presets.")
+    click.echo("or run --show-shortcuts to view available presets.")
 
 def bad_llm_response():
     click.echo("Got a bad response back from the LLM!")
     click.echo("Try running with --show-llm-reply to view the raw reply.")
     click.echo("Use --show-llm-prompt to inspect the actual prompt.")
+
+def show_shortcuts():
+    click.echo("Available CLI parameter presets. Use 'cocommit --shortcut <NAME>' to apply a preset.")
+    click.echo("You may be prompted to install specific LLM dependencies. Run 'pip install <LIB>' to install them.")
+    click.echo()
+    for name, details in shortcuts.items():
+        click.echo(f"--shortcut {name}")
+        click.echo(json.dumps(details, indent=4))
+        click.echo()
+
+def selected_shortcut(options):
+    formatted_options = [f"--{key} {value}" for key, value in options.items()]
+    cli = " ".join(formatted_options)
+    click.echo(f"Calling with: {cli}")
+
+def no_such_shortcut(name):
+    click.echo(f"Error: Unknown shortcut '{name}'")
+    click.echo("Please run 'cocommit --show-shortcuts' to view the available presets.")
