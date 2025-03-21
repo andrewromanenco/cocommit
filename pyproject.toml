@@ -14,7 +14,6 @@ classifiers = [
 
 requires-python = ">=3.9,<4.0"
 dependencies = [
-    "pytest (>=8.3.5,<9.0.0)",
     "gitpython (>=3.1.44,<4.0.0)",
     "click (>=8.1.8,<9.0.0)",
     "langchain[aws] (>=0.3.21,<0.4.0)"
@@ -34,6 +33,7 @@ test = "pytest:main"
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^6.0.0"
+pytest = "^8.3.5"
 
 [tool.poetry]
 include = ["cocommit/llm_prompts/*.*"]
