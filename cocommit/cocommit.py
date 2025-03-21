@@ -23,6 +23,36 @@ def main(ctx, **kwargs):
     if options.get('show_shortcuts'):
         cli_ui.show_shortcuts()
         return
+
+    dynamic_options = get_llm_calling_options(ctx, options)
+    if not dynamic_options:
+        cli_ui.no_model_parameters()
+        return
+
+    path = "."
+    if not is_git_repo(path):
+        cli_ui.not_a_git_repo()
+        return
+
+    last_commit_message = get_last_commit_message(path)
+    llm_prompt = get_llm_prompt(last_commit_message)
+    if options.get('show_llm_prompt'):
+        cli_ui.print_llm_prompt(llm_prompt)
+
+    llm_txt_reply = get_llm_reply(llm_prompt, dynamic_options)
+
+    if not looks_like_good_llm_response(llm_txt_reply):
+        cli_ui.bad_llm_response()
+        return
+
+    if options.get('show_llm_reply'):
+        cli_ui.print_llm_reply(llm_txt_reply)
+    llm_reply = LLMReply.get(llm_txt_reply)
+    cli_ui.print_result(llm_reply)
+
+    ask_and_amend(llm_reply.commit_message)
+
+def get_llm_calling_options(ctx, options):
     if options.get('shortcut'):
         dynamic_options = get_shortcut(options.get('shortcut'))
         if not dynamic_options:
@@ -31,26 +61,10 @@ def main(ctx, **kwargs):
         cli_ui.selected_shortcut(dynamic_options)
     else:
         dynamic_options = cli_ui.get_dynamic_options(ctx.params)
-    if not dynamic_options:
-        cli_ui.no_model_parameters()
-        return
-    path = "."
-    if not is_git_repo(path):
-        cli_ui.not_a_git_repo()
-        return
-    last_commit_message = get_last_commit_message(path)
-    llm_prompt = get_llm_prompt(last_commit_message)
-    if options.get('show_llm_prompt'):
-        cli_ui.print_llm_prompt(llm_prompt)
-    llm_txt_reply = cli_ui.timed_llm_call(lambda :call_llm(llm_prompt, **dynamic_options))
-    if not looks_like_good_llm_response(llm_txt_reply):
-        cli_ui.bad_llm_response()
-        return
-    if options.get('show_llm_reply'):
-        cli_ui.print_llm_reply(llm_txt_reply)
-    llm_reply = LLMReply.get(llm_txt_reply)
-    cli_ui.print_result(llm_reply)
-    ask_and_amend(llm_reply.commit_message)
+    return dynamic_options
+
+def get_llm_reply(llm_prompt, dynamic_options):
+    return cli_ui.timed_llm_call(lambda: call_llm(llm_prompt, **dynamic_options))
 
 if __name__ == "__main__":
     main()
