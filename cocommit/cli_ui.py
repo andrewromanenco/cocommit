@@ -22,10 +22,10 @@ def print_llm_reply(prompt):
     click.echo("\tEnd of LLM reply")
     click.echo("\n"*3)
 
-def timed_llm_call(fn, *args, **kwargs):
+def timed_llm_call(fn):
     start_time = time.time()
     click.echo("Calling LLM....")
-    result = fn(*args, **kwargs)
+    result = fn()
     end_time = time.time()
     execution_time = end_time - start_time
     click.echo(f"Done in {execution_time:.1f} seconds.")
@@ -70,3 +70,23 @@ def confirm_amend(previous_commit):
     click.echo(previous_commit.strip())
     click.echo("*" * len(header))
     click.echo("Amend ... done!")
+
+def get_dynamic_options(options):
+    if 'langchain_options' in options:
+        dynamic_options = options.pop('langchain_options')
+        it = iter(dynamic_options)
+        extra_dict = {}
+        for arg in it:
+            if arg.startswith("--"):
+                key = arg.lstrip("-")
+                try:
+                    value = next(it)
+                    if value.startswith("--"):
+                        extra_dict[key] = True
+                        it = iter([value] + list(it))
+                    else:
+                        extra_dict[key] = value
+                except StopIteration:
+                    extra_dict[key] = True
+        return extra_dict
+    return {}
