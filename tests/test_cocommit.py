@@ -23,7 +23,7 @@ def runner():
 @patch('cocommit.cocommit.cli_ui')
 def test_running_outside_of_git(mock_cli_ui, mock_is_git_repo, runner):
     mock_is_git_repo.return_value = False
-    result = runner.invoke(main, ['--shortcut', 'bedrock_claud37'])
+    result = runner.invoke(main, ['--shortcut', 'bedrock-claude37'])
     mock_is_git_repo.assert_called_once()
     mock_cli_ui.not_a_git_repo.assert_called_once()
 
@@ -80,8 +80,8 @@ def test_bedrock_shortcut(
         mock_get_last_commit_message,
         mock_is_git_repo,
         runner,
-        ['--shortcut', 'bedrock_claud37'])
-    mock_get_llm_reply.assert_called_once_with('prompt', shortcuts['bedrock_claud37'])
+        ['--shortcut', 'bedrock-claude37'])
+    mock_get_llm_reply.assert_called_once_with('prompt', shortcuts['bedrock-claude37'])
     mock_cli_ui.print_llm_prompt.assert_not_called()
     mock_cli_ui.print_llm_reply.assert_not_called()
 
@@ -113,8 +113,8 @@ def test_bedrock_shortcut_with_debug(
         mock_get_last_commit_message,
         mock_is_git_repo,
         runner,
-        ['--shortcut', 'bedrock_claud37','--show-llm-prompt', '--show-llm-reply'])
-    mock_get_llm_reply.assert_called_once_with('prompt', shortcuts['bedrock_claud37'])
+        ['--shortcut', 'bedrock-claude37','--show-llm-prompt', '--show-llm-reply'])
+    mock_get_llm_reply.assert_called_once_with('prompt', shortcuts['bedrock-claude37'])
     mock_cli_ui.print_llm_prompt.assert_called_once()
     mock_cli_ui.print_llm_reply.assert_called_once()
 
