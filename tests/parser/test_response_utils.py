@@ -4,13 +4,13 @@ def test_new_commit_message():
     assert get_updated_commit_message("123<NEW-COMMIT-MESSAGE>msg\nmsg</NEW-COMMIT-MESSAGE>456") == "msg\nmsg"
 
 def test_no_new_commit_message():
-    assert get_updated_commit_message("123456") == None
+    assert get_updated_commit_message("123456") is None
 
 def test_summary_message():
     assert get_summary("123<SUMMARY>msg\nmsg</SUMMARY>456") == "msg\nmsg"
 
 def test_no_summary_message():
-    assert get_summary("123456") == None
+    assert get_summary("123456") is None
 
 def test_recommendations():
     result = get_list_of_recommendations("123<FIXES>one\ntwo\nthree</FIXES>456")

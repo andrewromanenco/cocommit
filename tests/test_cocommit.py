@@ -8,6 +8,8 @@ warnings.filterwarnings(
     module="pydantic.v1.typing"
 )
 
+# ruff: noqa: E402
+
 import pytest
 from click.testing import CliRunner
 from cocommit.cocommit import main
@@ -23,7 +25,7 @@ def runner():
 @patch('cocommit.cocommit.cli_ui')
 def test_running_outside_of_git(mock_cli_ui, mock_is_git_repo, runner):
     mock_is_git_repo.return_value = False
-    result = runner.invoke(main, ['--shortcut', 'bedrock-claude37'])
+    runner.invoke(main, ['--shortcut', 'bedrock-claude37'])
     mock_is_git_repo.assert_called_once()
     mock_cli_ui.not_a_git_repo.assert_called_once()
 
