@@ -43,11 +43,13 @@ def _print_list(name, items):
 def print_result(llm_reply):
     click.echo("V"*40)
     generate_ascii_pet()
+    click.echo("\n")
+    click.echo("About your commit:")
     click.echo(llm_reply.summary)
     click.echo("\n")
     _print_list("Strengths", llm_reply.strengths_list)
     _print_list("Improvements", llm_reply.improvements_list)
-    commit_header = " Amended git message: "
+    commit_header = " Proposed git message: "
     click.echo(('*'*10) + commit_header + ("*"*20))
     click.echo(llm_reply.commit_message)
     click.echo("*"*(10 + 20 + len(commit_header)))
