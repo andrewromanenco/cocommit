@@ -19,6 +19,11 @@ from cocommit.shortcuts import get_shortcut
 @click.argument("langchain_options", nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def main(ctx, **kwargs):
+    path = "."
+    if not is_git_repo(path):
+        cli_ui.not_a_git_repo()
+        return
+
     options = ctx.params
     if options.get('show_shortcuts'):
         cli_ui.show_shortcuts()
@@ -27,11 +32,6 @@ def main(ctx, **kwargs):
     dynamic_options = get_llm_calling_options(ctx, options)
     if not dynamic_options:
         cli_ui.no_model_parameters()
-        return
-
-    path = "."
-    if not is_git_repo(path):
-        cli_ui.not_a_git_repo()
         return
 
     last_commit_message = get_last_commit_message(path)
