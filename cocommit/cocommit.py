@@ -19,6 +19,25 @@ from cocommit.shortcuts import get_shortcut
 @click.argument("langchain_options", nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def main(ctx, **kwargs):
+    """
+    A Copilot for Git.
+
+    Cocommit is a command-line tool that enhances commit quality by analyzing 
+    your HEAD commit using an Large Language Models (LLM) of your choice.
+
+    It leverages LangChain as an abstraction layer to access various LLMs.
+    To determine the required parameters for a specific LLM,
+    refer to the LangChain documentation:
+
+    https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html
+
+    Example: To call the Claude 3.7 model on AWS Bedrock in the us-east-1 region, use:
+
+        --model_provider bedrock --model us.anthropic.claude-3-7-sonnet-20250219-v1:0 --region_name us-east-1
+
+    Before using Cocommit, ensure that you have configured the necessary 
+    authorization for your selected LLM provider.
+    """
     path = "."
     if not is_git_repo(path):
         cli_ui.not_a_git_repo()
