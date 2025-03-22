@@ -1,7 +1,8 @@
 [project]
 name = "cocommit"
 version = "0.2.0"
-description = "Copilot for git commits"
+description = "This command-line GIT copilot analyzes your last commit and leverages an LLM of your choice to enhance it."
+
 authors = [
     {name = "Andrew Romanenco", email = "andrew@romanenco.com"}
 ]
@@ -9,7 +10,12 @@ license = {text = "MIT"}
 readme = "README.md"
 
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Version Control :: Git",
+  "Topic :: Utilities",
+  "Topic :: Artificial Intelligence"
 ]
 
 requires-python = ">=3.9,<4.0"
