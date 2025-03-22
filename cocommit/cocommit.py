@@ -15,7 +15,7 @@ from cocommit.shortcuts import get_shortcut
 @click.option('--show-llm-prompt', is_flag=True, help='Show the prompt sent out to the LLM')
 @click.option('--show-llm-reply', is_flag=True, help='Show the raw reply from the LLM')
 @click.option('--show-shortcuts', is_flag=True, help='Display available presets for CLI parameters.')
-@click.option('--shortcut', type=str, help='Predefined CLI parameters for common models')
+@click.option('-s', '--shortcut', type=str, help='Predefined CLI parameters for common models')
 @click.argument("langchain_options", nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def main(ctx, **kwargs):
