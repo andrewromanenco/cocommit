@@ -10,9 +10,9 @@ Conciseness: Is the message brief but descriptive? Ideally, the first line shoul
 Clarity: Does the message clearly explain what changes were made?
 Structure: Does it follow the conventional format?
 
-First line: Summary (imperative mood, no period at end)
+First line: Summary (imperative mood, no period at end, up to 50 characters)
 Blank line
-Detailed explanation (if needed)
+Detailed explanation (if needed, lines should be up to 72 characters in length)
 
 
 Specificity: Is it specific about what was changed rather than vague?
