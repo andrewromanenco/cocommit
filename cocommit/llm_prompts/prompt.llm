@@ -24,14 +24,14 @@ Engineers tent to describe what, and not why. As a result, in the future it is h
 
 In addition check the commit message for grammar.
 
-The ouptut has to be very specific. Make sure that the updated commit message is printed in tags:
+The output has to be very specific. Make sure that the updated commit message is printed in tags:
 <NEW-COMMIT-MESSAGE>
 the new commit message
 </NEW-COMMIT-MESSAGE>
 
-It is asolutely important for the new message to be printed between <NEW-COMMIT-MESSAGE> and </NEW-COMMIT-MESSAGE>.
-In addition, if there are any general advices or comments on the commit message, return those recommendation between tags <FIXES> and </FIXES>. Make sure each recommendation is on a new line and each recommendation does not span on multiple lines. Sort recommendations by importance, most important ones are on top.
+It is absolutely important for the new message to be printed between <NEW-COMMIT-MESSAGE> and </NEW-COMMIT-MESSAGE>.
+In addition, if there are any general advices or comments on the commit message, return those recommendations between tags <FIXES> and </FIXES>. Make sure each recommendation is on a new line and each recommendation does not span on multiple lines. Sort recommendations by importance, most important ones are on top.
 
-In addition, provide overall summary. Keep summary in tags <SUMMARY></SUMMARY>.
+In addition, provide am overall summary. Keep summary in tags <SUMMARY></SUMMARY>.
 If strengths exist, add them one per line between tags <STRENGTHS></STRENGTHS>.
 Areas for improvement, if exist, should be one per line between tags <IMPROVE></IMPROVE>.
