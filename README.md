@@ -131,7 +131,7 @@ cocommit -s NAME
 For example, if OPENAI_API_KEY is set:
 
 ```sh
-cocommit -s gpt-4o
+cocommit -s gpt4o
 ```
 
 This command is equivalent to the full OpenAI GPT-4o example above.
