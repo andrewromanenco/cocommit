@@ -1,6 +1,6 @@
 [project]
 name = "cocommit"
-version = "0.2.0"
+version = "1.0.0"
 description = "This command-line GIT copilot analyzes your last commit and leverages an LLM of your choice to enhance it."
 
 authors = [
